@@ -1,0 +1,5 @@
+{
+    "workbench.colorTheme": "Monokai Dimmed",
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+}
