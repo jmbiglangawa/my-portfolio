@@ -1,8 +1,12 @@
 // Base colors
-$dawn: linear-gradient(
+$horizon: linear-gradient(
     291.69deg,
-    #ffc09d 1.42%,
-    #096e7b 39.58%,
-    #194449 95.35%,
-    #135660 95.35%
+    #26c1d7 1.42%,
+    #397fd0 24.41%,
+    #856af1 95.35%
 );
+
+$horizonFontColor: #ffffff;
+
+// Screen sizes breakpoints
+$mobileSize: 800px;

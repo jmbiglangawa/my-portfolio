@@ -2,4 +2,19 @@
     "workbench.colorTheme": "Monokai Dimmed",
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true,
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "previewLimit": 50,
+            "server": "db4free.net",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "modestsample",
+            "database": "modestsample",
+            "username": "modestsample",
+            "password": "modestsample"
+        }
+    ],
 }
