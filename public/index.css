@@ -19,20 +19,9 @@ html {
 
 div {
     height: 100%;
-    width: 100%;
 }
 
 @font-face {
     font-family: 'AutobusBold';
     src: local('AutobusBold'), url(fonts/AutobusBold.ttf) format('truetype');
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    font-family: 'AutobusBold';
-    font-weight: normal;
 }

@@ -1,0 +1,153 @@
+@use 'Base';
+
+.header {
+    background: url(../assets/svg/home-bg.svg) no-repeat;
+    @include Base.full-background;
+    position: relative;
+
+    .brand-name-wrapper {
+        height: 8%;
+        @include Base.center;
+
+        .brand-name {
+            display: inline-block;
+            height: unset;
+
+            h6 {
+                margin: 0;
+                color: Base.$white;
+            }
+
+            img {
+                display: flex;
+                margin-top: 10px;
+            }
+        }
+    }
+
+    .view-on-github {
+        height: 120px;
+        width: 120px;
+        position: absolute;
+        top: 0;
+        right: 0;
+
+        background: url(../assets/svg/view-github-bg.svg) no-repeat;
+        @include Base.full-background;
+        @include Base.center;
+        @include Base.mobile-breakpoint {
+            display: none;
+        }
+
+        flex-direction: column;
+        justify-content: flex-start;
+
+        img {
+            width: 40px;
+            height: 40px;
+            margin: {
+                top: 10px;
+                bottom: 10px;
+            }
+        }
+
+        a {
+            background: #490fee;
+            border-radius: 30px;
+            cursor: pointer;
+
+            h6 {
+                color: Base.$white;
+                margin: 0;
+                padding: 5px 10px;
+                font-size: 18px;
+            }
+        }
+    }
+
+    .bc-wrapper {
+        @include Base.center;
+        flex-direction: column;
+
+        height: 75%;
+
+        h6 {
+            margin: 0;
+            color: Base.$white;
+        }
+
+        .tilt-wrapper {
+            width: 500px;
+            height: unset;
+        }
+
+        .below-wrapper {
+            height: 10%;
+            width: 450px;
+            display: flex;
+            justify-content: space-between;
+
+            a {
+                cursor: pointer;
+                text-decoration: none;
+
+                &:hover {
+                    h6 {
+                        color: #d3d3d3;
+                    }
+                }
+
+                h6 {
+                    margin: 0;
+                }
+            }
+
+            .print {
+                display: flex;
+
+                img {
+                    width: 30px;
+                    height: 30px;
+                    margin-right: 5px;
+                }
+            }
+        }
+
+        @media screen and (max-width: 500px) {
+            width: 100%;
+
+            .below-wrapper {
+                width: 100%;
+            }
+        }
+    }
+
+    .navigation-wrapper {
+        @include Base.center;
+        height: unset;
+
+        nav {
+            ul {
+                display: flex;
+                margin: 0;
+                padding: 0;
+
+                li {
+                    list-style-type: none;
+                    font-size: 1.25em;
+                    padding: 0 20px;
+
+                    a {
+                        color: Base.$white;
+                        font-family: 'AutoBusBold';
+                        text-decoration: none;
+
+                        &:hover {
+                            color: #d3d3d3;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

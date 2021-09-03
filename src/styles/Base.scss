@@ -6,7 +6,34 @@ $horizon: linear-gradient(
     #856af1 95.35%
 );
 
-$horizonFontColor: #ffffff;
+$purpleColor: #8f70e7;
+$paleBlack: #595959;
+$white: #ffffff;
+
+$desktopFontSize: 24px;
+$mobileFontSize: 18px;
+
+$mainColor: $purpleColor;
+$paragraphColor: $paleBlack;
 
 // Screen sizes breakpoints
 $mobileSize: 800px;
+
+@mixin center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin full-background {
+    -webkit-background-size: 100% 100%;
+    -moz-background-size: 100% 100%;
+    -o-background-size: 100% 100%;
+    background-size: 100% 100%;
+}
+
+@mixin mobile-breakpoint {
+    @media (max-width: $mobileSize) {
+        @content;
+    }
+}

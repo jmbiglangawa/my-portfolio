@@ -3,3 +3,54 @@
 .App {
     height: 100%;
 }
+
+p {
+    color: Base.$paragraphColor;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'AutobusBold';
+    font-weight: normal;
+    color: Base.$mainColor;
+}
+
+h6 {
+    font-size: 1.25em;
+}
+
+h5 {
+    font-size: 1.56em;
+}
+
+h4 {
+    font-size: 1.95em;
+}
+
+h3 {
+    font-size: 2.44em;
+}
+
+h2 {
+    font-size: 3.05em;
+}
+
+h1 {
+    font-size: 3.81em;
+}
+
+html,
+body {
+    font-size: Base.$desktopFontSize;
+}
+
+@include Base.mobile-breakpoint {
+    html,
+    body {
+        font-size: Base.$mobileFontSize;
+    }
+}
