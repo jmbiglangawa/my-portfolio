@@ -1,65 +1,66 @@
-import React from 'react'
 import '../styles/Header.scss'
 import WhiteLine from '../assets/svg/icons/brand-white-line.svg'
 import GithubIcon from '../assets/svg/icons/github-header.svg'
 import BusinessCard from '../assets/svg/business-card.svg'
-import PrintIcon from '../assets/svg/icons/print-icon.svg'
 import Tilt from 'react-parallax-tilt'
-import Card from './Card'
+import HelpIcon from '@mui/icons-material/Help'
+import PrintIcon from '@mui/icons-material/Print'
+import Button from '@mui/material/Button'
+import { Link } from 'react-router-dom'
+import { Link as ExternalLink } from '@mui/material'
+import { animated } from 'react-spring'
 
-const Header = () => {
+const Header = ({ header, card, nav, bc }) => {
     return (
-        <div className="header">
+        <animated.div style={header} className="header" id="header">
             <div className="brand-name-wrapper">
                 <div className="brand-name">
-                    <h6>theBiglangAwaClub.web.app</h6>
+                    <h6>marvie.web.app</h6>
                     <img src={WhiteLine} alt="" />
                 </div>
             </div>
 
             <div className="view-on-github">
                 <img src={GithubIcon} alt="" />
-                <a href="#">
+                <ExternalLink
+                    href="https://github.com/swingspringer/my-portfolio"
+                    target="_blank"
+                    rel="noopener,noreferrer">
                     <h6>View on Github</h6>
-                </a>
+                </ExternalLink>
             </div>
 
-            <div className="bc-wrapper">
+            <animated.div style={card} className="bc-wrapper">
                 <Tilt className="tilt-wrapper">
-                    {/* <img src={BusinessCard} alt="" /> */}
-                    <Card />
+                    <animated.img style={bc} src={BusinessCard} alt="" />
                 </Tilt>
 
                 <div className="below-wrapper">
-                    <a href="#">
-                        <h6>What's this?</h6>
-                    </a>
-                    <a href="#" className="print">
-                        <img src={PrintIcon} alt="" />
-                        <h6>Get a softcopy</h6>
-                    </a>
+                    <Button>
+                        <HelpIcon />
+                    </Button>
+                    <Button>
+                        <PrintIcon />
+                    </Button>
                 </div>
-            </div>
+            </animated.div>
 
-            <div className="navigation-wrapper">
+            <animated.div style={nav} className="navigation-wrapper">
                 <nav>
                     <ul>
                         <li>
-                            <a href="#">HOME</a>
+                            <Link to="/">HOME</Link>
                         </li>
                         <li>
-                            <a href="#">BLOG</a>
+                            <Link to="/projects">PROJECTS</Link>
                         </li>
                         <li>
-                            <a href="#">PROJECTS</a>
-                        </li>
-                        <li>
-                            <a href="#">CONTACT</a>
+                            <Link to="/contact">CONTACT</Link>
                         </li>
                     </ul>
                 </nav>
-            </div>
-        </div>
+            </animated.div>
+        </animated.div>
     )
 }
 

@@ -3,15 +3,18 @@
 .header {
     background: url(../assets/svg/home-bg.svg) no-repeat;
     @include Base.full-background;
-    position: relative;
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    z-index: 2;
 
     .brand-name-wrapper {
-        height: 8%;
         @include Base.center;
 
         .brand-name {
             display: inline-block;
             height: unset;
+            margin-top: 10px;
 
             h6 {
                 margin: 0;
@@ -77,39 +80,23 @@
         }
 
         .tilt-wrapper {
-            width: 500px;
-            height: unset;
+            img {
+                max-width: 600px;
+                width: 70vw;
+                object-fit: contain;
+            }
         }
 
         .below-wrapper {
-            height: 10%;
-            width: 450px;
+            margin-top: 5px;
+            max-width: 600px;
+            width: 70vw;
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-end;
+            color: #fff;
 
-            a {
-                cursor: pointer;
-                text-decoration: none;
-
-                &:hover {
-                    h6 {
-                        color: #d3d3d3;
-                    }
-                }
-
-                h6 {
-                    margin: 0;
-                }
-            }
-
-            .print {
-                display: flex;
-
-                img {
-                    width: 30px;
-                    height: 30px;
-                    margin-right: 5px;
-                }
+            button {
+                color: #fff;
             }
         }
 
@@ -123,10 +110,14 @@
     }
 
     .navigation-wrapper {
-        @include Base.center;
+        width: 100%;
         height: unset;
+        position: absolute;
+        bottom: 2vh;
 
         nav {
+            @include Base.center;
+
             ul {
                 display: flex;
                 margin: 0;

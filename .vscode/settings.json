@@ -1,5 +1,5 @@
 {
-    "workbench.colorTheme": "Monokai Dimmed",
+    "workbench.colorTheme": "Community Material Theme Palenight High Contrast",
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true,
     "sqltools.connections": [
@@ -16,5 +16,5 @@
             "username": "modestsample",
             "password": "modestsample"
         }
-    ],
+    ]
 }
