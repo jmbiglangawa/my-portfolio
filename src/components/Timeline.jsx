@@ -26,6 +26,10 @@ const Whisper = styled.div`
 
 const Title = styled.div`
     color: #8f70e7;
+`
+
+const Company = styled.div`
+    color: #8f70e7;
     font-weight: bold;
 `
 
@@ -50,20 +54,22 @@ const jobs = [
         icon: SchoolIcon,
         title: 'April 8, 2018',
         body:
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lorem lectus, convallis vitae eros non.',
+            'I graduated from school with a Bachelor of Science in Computer Engineering degree. During college we coded a lot of Arduino C++ and dealt with hardware more. This time around, I had no skill on web development whatsoever.',
     },
     {
         icon: WorkIcon,
         title: 'July 17, 2019',
+        company: 'Nova Solutions (PHILIPPINES) Inc.',
         body:
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lorem lectus, convallis vitae eros non.',
+            'My very first company. I took my baby steps here facing many challenges not only with dealing with the level of technology, but with the pressure and stress at the same time. I earned my first award here, which is Best Employee of eGov department of Year 2020!',
     },
     {
         right: true,
         icon: WorkIcon,
         title: 'January 17, 2022',
+        company: 'Vesta',
         body:
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lorem lectus, convallis vitae eros non.',
+            'My current company. I love how the company provides the finances for important things the team needs. Vesta uses latest technology that meets the market demand and prioritizes code quality. The team is a huge push factor in my growth, all of us work together on delivering the releases.',
     },
 ]
 
@@ -79,7 +85,7 @@ const Timeline = () => {
                     </TimelineSeparator>
                     <TimelineContent />
                 </TimelineItem>
-                {jobs.map(({ right, icon, title, body }, index) => (
+                {jobs.map(({ right, icon, title, company, body }, index) => (
                     <TimelineItem key={index}>
                         <TimelineSeparator>
                             <TimelineDot />
@@ -94,6 +100,7 @@ const Timeline = () => {
                                 )}
                                 <BodyWrap>
                                     <Title>{title}</Title>
+                                    {company && <Company>{company}</Company>}
                                     <p>{body}</p>
                                 </BodyWrap>
                                 {right && (

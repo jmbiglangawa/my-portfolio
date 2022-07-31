@@ -58,8 +58,9 @@ const Right = styled(SkillsSection)`
 const SkillItem = styled.div`
     width: 50px;
     height: 50px;
-    cursor: pointer;
     padding-bottom: 20px;
+    cursor: ${props => (props.active ? 'default' : 'pointer')};
+    color: ${props => (props.active ? '#8f70e7' : '#828282')};
 
     :hover {
         color: #8f70e7;
@@ -80,12 +81,20 @@ const Command = styled.div`
 
 const Skills = () => {
     const [cmd, setCmd] = useState([{ line: header }, { line: location }])
+    const [cmdString, setCmdString] = useState()
     const [outputVisible, setOutputVisible] = useState(false)
+    const [clsObject, setClsObject] = useState()
 
     const addToCmd = (command, output) => {
+        if (command === cmdString) {
+            return
+        } else {
+            setCmdString(command)
+        }
+
         let timeout = 0
         if (outputVisible) {
-            setCmd([...cmd, { line: location, clear: true }])
+            clsObject.typeString('cls').start()
             timeout = 1500
         }
         setTimeout(() => {
@@ -103,16 +112,21 @@ const Skills = () => {
             <Wrap>
                 <h3>Skills</h3>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-                    lorem lectus, convallis vitae eros non, molestie porta
-                    nulla. Vivamus id nulla a risus condimentum rhoncus.
+                    Throughout the years I've learned so much. All of the tech
+                    that I have experienced using before are enumerated down
+                    below. Click on any icon to display how I personally
+                    describe it
                 </p>
                 <SkillMonitorImg>
                     <Left>
                         {FrontendSkills.map(({ id, icon, command, output }) => (
                             <SkillItem
                                 key={id}
-                                onClick={() => addToCmd(command, output)}>
+                                active={command === cmdString}
+                                onClick={() => {
+                                    if (command !== cmdString)
+                                        addToCmd(command, output)
+                                }}>
                                 {icon}
                             </SkillItem>
                         ))}
@@ -128,22 +142,36 @@ const Skills = () => {
                                 {command && (
                                     <Typewriter
                                         key={command}
-                                        options={{ cursor: '_' }}
+                                        options={{
+                                            cursor: '_',
+                                        }}
                                         onInit={typewriter => {
+                                            console.log('STAT')
                                             typewriter
                                                 .typeString(command)
                                                 .start()
                                                 .pauseFor(500)
                                                 .callFunction(() => {
                                                     setOutputVisible(true)
+                                                    setCmd([
+                                                        ...cmd,
+                                                        {
+                                                            line: location,
+                                                            clear: true,
+                                                        },
+                                                    ])
+                                                    document.getElementsByClassName(
+                                                        'Typewriter__cursor'
+                                                    )[0].style.display = 'none'
                                                 })
                                         }}
                                     />
                                 )}
                                 {clear && (
                                     <Typewriter
+                                        options={{ cursor: '_' }}
                                         onInit={typewriter => {
-                                            typewriter.typeString('cls').start()
+                                            setClsObject(typewriter)
                                         }}
                                     />
                                 )}
@@ -154,7 +182,11 @@ const Skills = () => {
                         {BackendSkills.map(({ icon, id, command, output }) => (
                             <SkillItem
                                 key={id}
-                                onClick={() => addToCmd(command, output)}>
+                                active={command === cmdString}
+                                onClick={() => {
+                                    if (command !== cmdString)
+                                        addToCmd(command, output)
+                                }}>
                                 {icon}
                             </SkillItem>
                         ))}
