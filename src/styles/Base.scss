@@ -1,7 +1,7 @@
 // Base colors
 $horizon: linear-gradient(
     291.69deg,
-    #26c1d7 1.42%,
+    #3784e1 1.42%,
     #397fd0 24.41%,
     #856af1 95.35%
 );
@@ -36,4 +36,12 @@ $mobileSize: 800px;
     @media (max-width: $mobileSize) {
         @content;
     }
+}
+
+@mixin horizon {
+    background: $horizon;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
 }

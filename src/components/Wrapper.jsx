@@ -4,8 +4,8 @@ const Wrap = styled.div`
     padding: 5% 0;
 `
 
-const Wrapper = ({ children }) => {
-    return <Wrap>{children}</Wrap>
+const Wrapper = ({ id, children }) => {
+    return <Wrap id={id}>{children}</Wrap>
 }
 
 export default Wrapper

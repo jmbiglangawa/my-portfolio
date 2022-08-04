@@ -8,11 +8,7 @@ import styled from '@emotion/styled'
 import SchoolIcon from '@mui/icons-material/School'
 import WorkIcon from '@mui/icons-material/Work'
 import SvgIcon from '@mui/material/SvgIcon'
-import { Wrap } from './Wrapper'
-
-const Wrapper = styled(Wrap)`
-    margin-bottom: 10%;
-`
+import Wrapper from './Wrapper'
 
 const H3 = styled.h3`
     text-align: center;
@@ -28,9 +24,15 @@ const Title = styled.div`
     color: #8f70e7;
 `
 
-const Company = styled.div`
+const Company = styled.span`
     color: #8f70e7;
     font-weight: bold;
+    font-size: 20px;
+`
+
+const CompanyLogo = styled.img`
+    height: 20px;
+    margin-right: 5px;
 `
 
 const ItemWrap = styled.div`
@@ -60,6 +62,7 @@ const jobs = [
         icon: WorkIcon,
         title: 'July 17, 2019',
         company: 'Nova Solutions (PHILIPPINES) Inc.',
+        logo: 'nova-logo.png',
         body:
             'My very first company. I took my baby steps here facing many challenges not only with dealing with the level of technology, but with the pressure and stress at the same time. I earned my first award here, which is Best Employee of eGov department of Year 2020!',
     },
@@ -67,7 +70,8 @@ const jobs = [
         right: true,
         icon: WorkIcon,
         title: 'January 17, 2022',
-        company: 'Vesta',
+        company: 'Vesta: Payment Fraud Prevention Services',
+        logo: 'vesta-logo.svg',
         body:
             'My current company. I love how the company provides the finances for important things the team needs. Vesta uses latest technology that meets the market demand and prioritizes code quality. The team is a huge push factor in my growth, all of us work together on delivering the releases.',
     },
@@ -85,33 +89,42 @@ const Timeline = () => {
                     </TimelineSeparator>
                     <TimelineContent />
                 </TimelineItem>
-                {jobs.map(({ right, icon, title, company, body }, index) => (
-                    <TimelineItem key={index}>
-                        <TimelineSeparator>
-                            <TimelineDot />
-                            <TimelineConnector />
-                        </TimelineSeparator>
-                        <TimelineContent>
-                            <ItemWrap>
-                                {!right && (
-                                    <TitleWrap>
-                                        <SvgIcon component={icon} />
-                                    </TitleWrap>
-                                )}
-                                <BodyWrap>
-                                    <Title>{title}</Title>
-                                    {company && <Company>{company}</Company>}
-                                    <p>{body}</p>
-                                </BodyWrap>
-                                {right && (
-                                    <TitleWrap>
-                                        <SvgIcon component={icon} />
-                                    </TitleWrap>
-                                )}
-                            </ItemWrap>
-                        </TimelineContent>
-                    </TimelineItem>
-                ))}
+                {jobs.map(
+                    ({ right, icon, title, company, logo, body }, index) => (
+                        <TimelineItem key={index}>
+                            <TimelineSeparator>
+                                <TimelineDot />
+                                <TimelineConnector />
+                            </TimelineSeparator>
+                            <TimelineContent>
+                                <ItemWrap>
+                                    {!right && (
+                                        <TitleWrap>
+                                            <SvgIcon component={icon} />
+                                        </TitleWrap>
+                                    )}
+                                    <BodyWrap>
+                                        <Title>{title}</Title>
+                                        {company && (
+                                            <Company>
+                                                <CompanyLogo
+                                                    src={`${process.env.PUBLIC_URL}/img/${logo}`}
+                                                />
+                                                {company}
+                                            </Company>
+                                        )}
+                                        <p>{body}</p>
+                                    </BodyWrap>
+                                    {right && (
+                                        <TitleWrap>
+                                            <SvgIcon component={icon} />
+                                        </TitleWrap>
+                                    )}
+                                </ItemWrap>
+                            </TimelineContent>
+                        </TimelineItem>
+                    )
+                )}
             </MuiTimeline>
             <Whisper>present</Whisper>
         </Wrapper>

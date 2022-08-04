@@ -14,7 +14,6 @@ const Content = styled.div`
     display: flex;
     justify-content: space-between;
     margin-top: 25px;
-    margin-bottom: 100px;
 `
 
 const Wrap = styled.div`

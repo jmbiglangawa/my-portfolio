@@ -49,13 +49,16 @@ const Header = ({ header, card, nav, bc }) => {
                 <nav>
                     <ul>
                         <li>
-                            <Link to="/">HOME</Link>
+                            {/* <Link to="/">HOME</Link> */}
+                            <a href="#">HOME</a>
                         </li>
                         <li>
-                            <Link to="/projects">PROJECTS</Link>
+                            {/* <Link to="/projects">PROJECTS</Link> */}
+                            <a href="#">PROJECTS</a>
                         </li>
                         <li>
-                            <Link to="/contact">CONTACT</Link>
+                            {/* <Link to="/contact">CONTACT</Link> */}
+                            <a href="#">CONTACT</a>
                         </li>
                     </ul>
                 </nav>

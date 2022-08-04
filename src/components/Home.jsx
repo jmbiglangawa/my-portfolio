@@ -10,6 +10,8 @@ import { useSpring, animated } from 'react-spring'
 import BusinessCardIcon from '../assets/img/business-card-icon.png'
 import Footer from './Footer'
 import { Tooltip } from '@mui/material'
+import Projects from './Projects'
+import Contact from './Contact'
 
 const Content = styled.div`
     margin: 0 10%;
@@ -54,6 +56,8 @@ const Home = () => {
                 <Intro />
                 <Skills />
                 <Timeline />
+                <Projects />
+                <Contact />
             </Content>
             <Footer />
             <animated.div
