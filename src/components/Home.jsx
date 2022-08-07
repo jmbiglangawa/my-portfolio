@@ -21,11 +21,10 @@ const Home = () => {
     const [belowFold, setBelowFold] = useState(false)
     const scrollY = useScrollPosition(10)
 
-    const card = useSpring({ opacity: belowFold ? 0 : 1 })
+    const card = useSpring({ height: belowFold ? '0%' : '75%' })
     const header = useSpring({ height: belowFold ? '12vh' : '100vh' })
-    const content = useSpring({ marginTop: belowFold ? '10%' : '0%' })
     const nav = useSpring({ marginBottom: belowFold ? '0vh' : '10vh' })
-    const bc = useSpring({ height: belowFold ? '0%' : '99%' })
+    const content = useSpring({ marginTop: belowFold ? '10%' : '0%' })
     const bcIcon = useSpring({ right: belowFold ? '60px' : '-300px' })
 
     useEffect(() => {
@@ -50,7 +49,6 @@ const Home = () => {
                 header={header}
                 card={card}
                 nav={nav}
-                bc={bc}
             />
             <Content as={animated.div} style={content}>
                 <Intro />

@@ -45,3 +45,22 @@ $mobileSize: 800px;
     background-clip: text;
     text-fill-color: transparent;
 }
+
+@mixin horizon-background {
+    background: $horizon;
+    color: #ffffff;
+    padding: 5px 15px;
+    border-radius: 20px;
+    -webkit-background-clip: unset;
+    -webkit-text-fill-color: unset;
+    background-clip: unset;
+    text-fill-color: unset;
+}
+
+.horizon {
+    @include horizon;
+}
+
+.horizon-background {
+    @include horizon-background;
+}

@@ -2,6 +2,7 @@ import styled from '@emotion/styled'
 import Browser from '../assets/svg/browser.svg'
 import Console from '../assets/svg/console.svg'
 import Wrapper from './Wrapper'
+import '../styles/Base.scss'
 
 const Header = styled.div`
     display: flex;
@@ -40,7 +41,7 @@ const Intro = () => {
         <WrapperI>
             <Header>
                 <h5>As a full stack web developer,</h5>
-                <h3>I work on both</h3>
+                <h3 className="horizon-background">I work on both</h3>
             </Header>
             <Content>
                 <Wrap>

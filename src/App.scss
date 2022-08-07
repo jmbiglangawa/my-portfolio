@@ -12,15 +12,18 @@ h1,
 h2,
 h3,
 h4,
-h5,
-h6 {
+h5 {
+    @include Base.horizon;
     font-family: 'AutobusBold';
     font-weight: normal;
-    color: Base.$mainColor;
     margin: 0;
 }
 
 h6 {
+    font-family: 'AutobusBold';
+    font-weight: normal;
+    margin: 0;
+    color: #ffffff;
     font-size: 1.25em;
 }
 

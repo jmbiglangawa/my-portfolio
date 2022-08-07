@@ -80,6 +80,8 @@
         }
 
         .tilt-wrapper {
+            height: 60%;
+
             img {
                 max-width: 600px;
                 width: 70vw;
@@ -87,7 +89,12 @@
             }
         }
 
+        .business-card {
+            height: 99%;
+        }
+
         .below-wrapper {
+            height: 6%;
             margin-top: 5px;
             max-width: 600px;
             width: 70vw;
@@ -97,6 +104,11 @@
 
             button {
                 color: #fff;
+                height: 100%;
+
+                svg {
+                    height: 100%;
+                }
             }
         }
 

@@ -6,11 +6,10 @@ import Tilt from 'react-parallax-tilt'
 import HelpIcon from '@mui/icons-material/Help'
 import PrintIcon from '@mui/icons-material/Print'
 import Button from '@mui/material/Button'
-import { Link } from 'react-router-dom'
 import { Link as ExternalLink } from '@mui/material'
 import { animated } from 'react-spring'
 
-const Header = ({ header, card, nav, bc }) => {
+const Header = ({ header, card, nav }) => {
     return (
         <animated.div style={header} className="header" id="header">
             <div className="brand-name-wrapper">
@@ -32,9 +31,8 @@ const Header = ({ header, card, nav, bc }) => {
 
             <animated.div style={card} className="bc-wrapper">
                 <Tilt className="tilt-wrapper">
-                    <animated.img style={bc} src={BusinessCard} alt="" />
+                    <img className="business-card" src={BusinessCard} alt="" />
                 </Tilt>
-
                 <div className="below-wrapper">
                     <Button>
                         <HelpIcon />
