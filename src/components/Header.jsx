@@ -7,11 +7,40 @@ import HelpIcon from '@mui/icons-material/Help'
 import PrintIcon from '@mui/icons-material/Print'
 import Button from '@mui/material/Button'
 import { Link as ExternalLink } from '@mui/material'
-import { animated } from 'react-spring'
+import classnames from 'classnames'
+import useScrollPosition from '@react-hook/window-scroll'
 
-const Header = ({ header, card, nav }) => {
+const Navigator = ({ target }) => {
+    const scrollY = useScrollPosition(60)
+
+    const onClick = () => {
+        // This equation kind of worked out
+        const offset =
+            scrollY <= 50
+                ? window.innerHeight - window.innerHeight / 9
+                : window.innerHeight / 12
+        const locationY =
+            scrollY +
+            document
+                .getElementById(target.toLowerCase())
+                .getBoundingClientRect().top -
+            offset
+
+        window.scrollTo(0, target === 'HOME' ? 0 : locationY)
+    }
+
     return (
-        <animated.div style={header} className="header" id="header">
+        <li>
+            <ExternalLink onClick={onClick}>{target}</ExternalLink>
+        </li>
+    )
+}
+
+const Header = ({ belowFold }) => {
+    return (
+        <div
+            className={classnames('header', { headerScroll: belowFold })}
+            id="header">
             <div className="brand-name-wrapper">
                 <div className="brand-name">
                     <h6>marvie.web.app</h6>
@@ -29,7 +58,7 @@ const Header = ({ header, card, nav }) => {
                 </ExternalLink>
             </div>
 
-            <animated.div style={card} className="bc-wrapper">
+            <div className="bc-wrapper">
                 <Tilt className="tilt-wrapper">
                     <img className="business-card" src={BusinessCard} alt="" />
                 </Tilt>
@@ -41,27 +70,18 @@ const Header = ({ header, card, nav }) => {
                         <PrintIcon />
                     </Button>
                 </div>
-            </animated.div>
+            </div>
 
-            <animated.div style={nav} className="navigation-wrapper">
+            <div className="navigation-wrapper">
                 <nav>
                     <ul>
-                        <li>
-                            {/* <Link to="/">HOME</Link> */}
-                            <a href="#">HOME</a>
-                        </li>
-                        <li>
-                            {/* <Link to="/projects">PROJECTS</Link> */}
-                            <a href="#">PROJECTS</a>
-                        </li>
-                        <li>
-                            {/* <Link to="/contact">CONTACT</Link> */}
-                            <a href="#">CONTACT</a>
-                        </li>
+                        <Navigator target="HOME" />
+                        <Navigator target="PROJECTS" />
+                        <Navigator target="CONTACT" />
                     </ul>
                 </nav>
-            </animated.div>
-        </animated.div>
+            </div>
+        </div>
     )
 }
 

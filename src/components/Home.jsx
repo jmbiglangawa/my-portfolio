@@ -1,39 +1,55 @@
+import { useEffect, useState } from 'react'
 import styled from '@emotion/styled'
-import '../styles/Home.scss'
 import Header from './Header'
 import Intro from './Intro'
 import Skills from './Skills'
 import Timeline from './Timeline'
 import useScrollPosition from '@react-hook/window-scroll'
-import { useEffect, useState } from 'react'
 import { useSpring, animated } from 'react-spring'
 import BusinessCardIcon from '../assets/img/business-card-icon.png'
 import Footer from './Footer'
 import { Tooltip } from '@mui/material'
 import Projects from './Projects'
 import Contact from './Contact'
+import classnames from 'classnames'
+import '../styles/Home.scss'
 
 const Content = styled.div`
     margin: 0 10%;
+    margin-top: 100vh;
+    transition: margin-top 0.5s;
 `
+
+const disableScroll = () => {
+    const scrollY = window.pageYOffset || document.documentElement.scrollTop
+    const scrollX = window.pageXOffset || document.documentElement.scrollLeft
+
+    window.onscroll = () => {
+        window.scrollTo(scrollX, scrollY)
+    }
+}
+
+const enableScroll = () => {
+    window.onscroll = () => {}
+}
 
 const Home = () => {
     const [belowFold, setBelowFold] = useState(false)
-    const scrollY = useScrollPosition(10)
+    const scrollY = useScrollPosition(60)
+    const fold = 50
 
-    const card = useSpring({ height: belowFold ? '0%' : '75%' })
-    const header = useSpring({ height: belowFold ? '12vh' : '100vh' })
-    const nav = useSpring({ marginBottom: belowFold ? '0vh' : '10vh' })
-    const content = useSpring({ marginTop: belowFold ? '10%' : '0%' })
     const bcIcon = useSpring({ right: belowFold ? '60px' : '-300px' })
 
     useEffect(() => {
-        if (scrollY > 100 && !belowFold) {
+        if (scrollY > fold && !belowFold) {
             setBelowFold(true)
-        } else if (scrollY <= 100 && belowFold) {
+
+            disableScroll()
+            setTimeout(() => enableScroll(), 500)
+        } else if (scrollY <= fold && belowFold) {
             setBelowFold(false)
         }
-    }, [belowFold, scrollY])
+    }, [scrollY, belowFold])
 
     const bcIconClickHandler = () => {
         window.scrollTo({
@@ -43,14 +59,9 @@ const Home = () => {
     }
 
     return (
-        <>
-            <Header
-                belowFold={belowFold}
-                header={header}
-                card={card}
-                nav={nav}
-            />
-            <Content as={animated.div} style={content}>
+        <div id="home">
+            <Header belowFold={belowFold} />
+            <Content className={classnames({ contentScroll: belowFold })}>
                 <Intro />
                 <Skills />
                 <Timeline />
@@ -66,7 +77,7 @@ const Home = () => {
                     <img src={BusinessCardIcon} alt="bcIcon" />
                 </Tooltip>
             </animated.div>
-        </>
+        </div>
     )
 }
 

@@ -30,7 +30,7 @@ const Contacts = styled.div`
 
 const Contact = () => {
     return (
-        <Wrapper id="contacts">
+        <Wrapper id="contact">
             <Wrapper center>
                 <h2 className="horizon-background">Contacts</h2>
             </Wrapper>
