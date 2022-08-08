@@ -1,7 +1,7 @@
 import OpenInNewIcon from '@mui/icons-material/OpenInNew'
 import styled from '@emotion/styled'
 import Wrapper from './Wrapper'
-import ProjectList from './data/ProjectsList'
+import ProjectList from './data/Projects'
 import '../styles/Base.scss'
 
 const Project = styled.div`
