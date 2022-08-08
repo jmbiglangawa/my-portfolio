@@ -84,7 +84,7 @@ const MoreComingWrap = styled.div`
 const Projects = () => {
     return (
         <Wrapper id="projects">
-            <Wrapper center className="">
+            <Wrapper center>
                 <h2 className="horizon-background">Projects</h2>
             </Wrapper>
             <TitleSpace />
