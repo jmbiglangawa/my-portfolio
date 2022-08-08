@@ -22,6 +22,10 @@ const Contacts = styled.div`
     & svg {
         margin-right: 10px;
     }
+
+    & a {
+        color: #8f70e7;
+    }
 `
 
 const Contact = () => {
