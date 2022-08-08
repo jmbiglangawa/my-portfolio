@@ -1,8 +1,8 @@
 import styled from '@emotion/styled'
 import SkillMonitor from '../assets/svg/skill-monitor.svg'
-import { BackendSkills, FrontendSkills } from './skills/Skills'
+import { Backend, Frontend } from './data/Skills'
 import Wrapper from './Wrapper'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import Typewriter from 'typewriter-effect'
 import '../styles/Skills.scss'
 
@@ -119,7 +119,7 @@ const Skills = () => {
                 </p>
                 <SkillMonitorImg>
                     <Left>
-                        {FrontendSkills.map(({ id, icon, command, output }) => (
+                        {Frontend.map(({ id, icon, command, output }) => (
                             <SkillItem
                                 key={id}
                                 active={command === cmdString}
@@ -179,7 +179,7 @@ const Skills = () => {
                         ))}
                     </Center>
                     <Right>
-                        {BackendSkills.map(({ icon, id, command, output }) => (
+                        {Backend.map(({ icon, id, command, output }) => (
                             <SkillItem
                                 key={id}
                                 active={command === cmdString}
