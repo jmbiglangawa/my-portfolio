@@ -16,36 +16,20 @@ import '../styles/Home.scss'
 
 const Content = styled.div`
     margin: 0 10%;
-    margin-top: 100vh;
+    margin-top: 150vh;
     transition: margin-top 0.5s;
 `
-
-const disableScroll = () => {
-    const scrollY = window.pageYOffset || document.documentElement.scrollTop
-    const scrollX = window.pageXOffset || document.documentElement.scrollLeft
-
-    window.onscroll = () => {
-        window.scrollTo(scrollX, scrollY)
-    }
-}
-
-const enableScroll = () => {
-    window.onscroll = () => {}
-}
 
 const Home = () => {
     const [belowFold, setBelowFold] = useState(false)
     const scrollY = useScrollPosition(60)
-    const fold = 50
+    const fold = 100
 
     const bcIcon = useSpring({ right: belowFold ? '60px' : '-300px' })
 
     useEffect(() => {
         if (scrollY > fold && !belowFold) {
             setBelowFold(true)
-
-            disableScroll()
-            setTimeout(() => enableScroll(), 500)
         } else if (scrollY <= fold && belowFold) {
             setBelowFold(false)
         }
