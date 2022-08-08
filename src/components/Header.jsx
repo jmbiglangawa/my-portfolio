@@ -16,9 +16,7 @@ const Navigator = ({ target }) => {
     const onClick = () => {
         // This equation kind of worked out
         const offset =
-            scrollY <= 50
-                ? window.innerHeight - window.innerHeight / 9
-                : window.innerHeight / 12
+            scrollY <= 50 ? window.innerHeight + 137 : window.innerHeight / 12
         const locationY =
             scrollY +
             document
