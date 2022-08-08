@@ -5,8 +5,9 @@ import BusinessCard from '../assets/svg/business-card.svg'
 import Tilt from 'react-parallax-tilt'
 import HelpIcon from '@mui/icons-material/Help'
 import PrintIcon from '@mui/icons-material/Print'
+import DownloadIcon from '@mui/icons-material/Download'
 import Button from '@mui/material/Button'
-import { Link as ExternalLink } from '@mui/material'
+import { Link as ExternalLink, Tooltip } from '@mui/material'
 import classnames from 'classnames'
 import useScrollPosition from '@react-hook/window-scroll'
 
@@ -35,6 +36,24 @@ const Navigator = ({ target }) => {
 }
 
 const Header = ({ belowFold }) => {
+    const download = () => {
+        fetch(process.env.PUBLIC_URL + '/img/business-card.png').then(
+            response => {
+                response.arrayBuffer().then(buffer => {
+                    const url = window.URL.createObjectURL(new Blob([buffer]))
+                    const link = document.createElement('a')
+                    link.href = url
+                    link.setAttribute(
+                        'download',
+                        'John Marvie Biglang-awa - Business Card.png'
+                    )
+                    document.body.appendChild(link)
+                    link.click()
+                })
+            }
+        )
+    }
+
     return (
         <div
             className={classnames('header', { headerScroll: belowFold })}
@@ -61,11 +80,11 @@ const Header = ({ belowFold }) => {
                     <img className="business-card" src={BusinessCard} alt="" />
                 </Tilt>
                 <div className="below-wrapper">
-                    <Button>
+                    <Tooltip title="This is my digital Business Card! You can download it using the icon on the right 👉">
                         <HelpIcon />
-                    </Button>
-                    <Button>
-                        <PrintIcon />
+                    </Tooltip>
+                    <Button onClick={download}>
+                        <DownloadIcon />
                     </Button>
                 </div>
             </div>
