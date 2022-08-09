@@ -7,15 +7,23 @@ import '../styles/Base.scss'
 const Project = styled.div`
     position: relative;
     background-color: #ffffff;
-    height: 180px;
-    margin: 0 50px;
+    height: 200px;
+    max-width: 1577px;
+    margin: auto;
     margin-bottom: 40px;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 
-    &:hover #banner {
+    &:hover .banner {
         width: 60%;
-
         clip-path: polygon(0 0, 100% 0%, 85% 100%, 0% 100%);
+    }
+
+    @media (max-width: 1300px) {
+        height: 150px;
+
+        & .project-desc {
+            margin: 0;
+        }
     }
 `
 
@@ -90,7 +98,10 @@ const Projects = () => {
             <TitleSpace />
             {ProjectList.map(proj => (
                 <Project>
-                    <Banner id="banner" bg={'/img/banner/' + proj.banner} />
+                    <Banner
+                        className="banner"
+                        bg={'/img/banner/' + proj.banner}
+                    />
                     <Desc>
                         <ProjectTitle>
                             <h4>
@@ -104,7 +115,7 @@ const Projects = () => {
                             </h4>
                             <span>{proj.date}</span>
                         </ProjectTitle>
-                        <p>{proj.desc}</p>
+                        <p className="project-desc">{proj.desc}</p>
                     </Desc>
                 </Project>
             ))}

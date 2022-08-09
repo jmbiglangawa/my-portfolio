@@ -16,6 +16,11 @@ const Content = styled.div`
     margin: 0 10%;
     margin-top: 150vh;
     transition: margin-top 0.5s;
+
+    @media (max-width: 1300px) {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
 `
 
 const Home = () => {
