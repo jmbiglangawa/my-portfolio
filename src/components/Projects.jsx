@@ -7,7 +7,7 @@ import '../styles/Base.scss'
 const Project = styled.div`
     position: relative;
     background-color: #ffffff;
-    height: 200px;
+    height: 180px;
     margin: 0 50px;
     margin-bottom: 40px;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
@@ -43,7 +43,7 @@ const Desc = styled.div`
     position: absolute;
     top: 0;
     right: 0;
-    padding: 20px;
+    padding: 1%;
     box-sizing: border-box;
 `
 

@@ -3,10 +3,9 @@ import WhiteLine from '../assets/svg/icons/brand-white-line.svg'
 import GithubIcon from '../assets/svg/icons/github-header.svg'
 import BusinessCard from '../assets/svg/business-card.svg'
 import Tilt from 'react-parallax-tilt'
-import HelpIcon from '@mui/icons-material/Help'
 import DownloadIcon from '@mui/icons-material/Download'
 import Button from '@mui/material/Button'
-import { Link as ExternalLink, Tooltip } from '@mui/material'
+import { Link as ExternalLink } from '@mui/material'
 import classnames from 'classnames'
 import useScrollPosition from '@react-hook/window-scroll'
 
@@ -79,10 +78,8 @@ const Header = ({ belowFold }) => {
                     <img className="business-card" src={BusinessCard} alt="" />
                 </Tilt>
                 <div className="below-wrapper">
-                    <Tooltip title="This is my digital Business Card! You can download it using the icon on the right 👉">
-                        <HelpIcon />
-                    </Tooltip>
                     <Button onClick={download}>
+                        <h6>Save a copy</h6>
                         <DownloadIcon />
                     </Button>
                 </div>
