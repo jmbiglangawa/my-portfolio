@@ -5,13 +5,11 @@ import Intro from './Intro'
 import Skills from './Skills'
 import Timeline from './Timeline'
 import useScrollPosition from '@react-hook/window-scroll'
-import { useSpring, animated } from 'react-spring'
-import BusinessCardIcon from '../assets/img/business-card-icon.png'
 import Footer from './Footer'
-import { Tooltip } from '@mui/material'
 import Projects from './Projects'
 import Contact from './Contact'
 import classnames from 'classnames'
+import CardIcon from './CardIcon'
 import '../styles/Home.scss'
 
 const Content = styled.div`
@@ -22,10 +20,8 @@ const Content = styled.div`
 
 const Home = () => {
     const [belowFold, setBelowFold] = useState(false)
-    const scrollY = useScrollPosition(60)
+    const scrollY = useScrollPosition(10)
     const fold = 100
-
-    const bcIcon = useSpring({ right: belowFold ? '60px' : '-300px' })
 
     useEffect(() => {
         if (scrollY > fold && !belowFold) {
@@ -34,13 +30,6 @@ const Home = () => {
             setBelowFold(false)
         }
     }, [scrollY, belowFold])
-
-    const bcIconClickHandler = () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth',
-        })
-    }
 
     return (
         <div id="home">
@@ -52,15 +41,8 @@ const Home = () => {
                 <Projects />
                 <Contact />
             </Content>
+            <CardIcon belowFold={belowFold} />
             <Footer />
-            <animated.div
-                style={bcIcon}
-                className="bcIcon animate__swing"
-                onClick={bcIconClickHandler}>
-                <Tooltip title="Scroll to top">
-                    <img src={BusinessCardIcon} alt="bcIcon" />
-                </Tooltip>
-            </animated.div>
         </div>
     )
 }
