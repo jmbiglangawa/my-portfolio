@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import SkillMonitor from '../assets/svg/skill-monitor.svg'
+import SkillMonitorSvg from '../assets/svg/skill-monitor.svg'
 import { Backend, Frontend } from './data/Skills'
 import Wrapper from './Wrapper'
 import { useState } from 'react'
@@ -17,12 +17,16 @@ const Wrap = styled.div`
     align-items: center;
 `
 
-const SkillMonitorImg = styled.div`
-    background: url(${SkillMonitor});
+const SkillMonitor = styled.div`
+    background: url(${SkillMonitorSvg});
     width: 1000px;
     height: 601px;
     position: relative;
     color: #828282;
+
+    @media (max-width: 1024px) {
+        display: none;
+    }
 `
 
 const SkillsSection = styled.div`
@@ -108,7 +112,7 @@ const Skills = () => {
     }
 
     return (
-        <Wrapper>
+        <Wrapper className="skills">
             <Wrap>
                 <h3>Skills</h3>
                 <p>
@@ -117,7 +121,7 @@ const Skills = () => {
                     below. Click on any icon to display how I personally
                     describe it
                 </p>
-                <SkillMonitorImg>
+                <SkillMonitor>
                     <Left>
                         {Frontend.map(({ id, icon, command, output }) => (
                             <SkillItem
@@ -191,7 +195,7 @@ const Skills = () => {
                             </SkillItem>
                         ))}
                     </Right>
-                </SkillMonitorImg>
+                </SkillMonitor>
             </Wrap>
         </Wrapper>
     )

@@ -15,6 +15,7 @@ const Content = styled.div`
     display: flex;
     justify-content: space-between;
     margin-top: 25px;
+    flex-wrap: wrap;
 `
 
 const Wrap = styled.div`
@@ -29,6 +30,19 @@ const Wrap = styled.div`
 
     img {
         margin-bottom: 20px;
+
+        @media (max-width: 1024px) {
+            width: 100%;
+        }
+    }
+
+    @media (max-width: 700px) {
+        width: 100%;
+        margin-bottom: 50px;
+
+        img {
+            width: 50%;
+        }
     }
 `
 

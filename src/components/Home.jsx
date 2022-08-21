@@ -21,6 +21,12 @@ const Content = styled.div`
         margin-left: 5%;
         margin-right: 5%;
     }
+
+    @media (max-width: 1024px) {
+        .skills {
+            display: none;
+        }
+    }
 `
 
 const Home = () => {

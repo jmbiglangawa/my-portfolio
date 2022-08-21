@@ -31,6 +31,21 @@ const Wrapper = styled.div`
             right: -0.8rem;
         }
     }
+
+    @media (max-width: 800px) {
+        right: 10px;
+
+        img {
+            width: 100px;
+        }
+    }
+
+    @media (max-device-width: 800px) {
+        & button {
+            top: -1rem;
+            right: -0.8rem;
+        }
+    }
 `
 
 const Reopen = styled.div`

@@ -2,6 +2,9 @@ import OpenInNewIcon from '@mui/icons-material/OpenInNew'
 import styled from '@emotion/styled'
 import Wrapper from './Wrapper'
 import ProjectList from './data/Projects'
+import { useEffect, useState } from 'react'
+import Constants from '../util/Constants'
+import { useMediaQuery } from '@react-hook/media-query'
 import '../styles/Base.scss'
 
 const Project = styled.div`
@@ -16,10 +19,22 @@ const Project = styled.div`
     &:hover .banner {
         width: 60%;
         clip-path: polygon(0 0, 100% 0%, 85% 100%, 0% 100%);
+
+        @media (max-width: 1024px) {
+            width: 0%;
+        }
     }
 
     @media (max-width: 1300px) {
         height: 150px;
+
+        & .project-desc {
+            margin: 0;
+        }
+    }
+
+    @media (max-width: 1024px) {
+        height: 200px;
 
         & .project-desc {
             margin: 0;
@@ -53,6 +68,11 @@ const Desc = styled.div`
     right: 0;
     padding: 1%;
     box-sizing: border-box;
+
+    @media (max-width: 1024px) {
+        width: 100% !important;
+        padding: 20px;
+    }
 `
 
 const ProjectTitle = styled.div`
@@ -90,6 +110,15 @@ const MoreComingWrap = styled.div`
 `
 
 const Projects = () => {
+    const [bannerPrefix, setBannerPrefix] = useState('')
+    const isMobile = useMediaQuery(
+        `only screen and (max-width: ${Constants.mobileBreakpoint}px)`
+    )
+
+    useEffect(() => {
+        setBannerPrefix(isMobile ? 'm_' : '')
+    }, [isMobile, bannerPrefix])
+
     return (
         <Wrapper id="projects">
             <Wrapper center>
@@ -100,7 +129,7 @@ const Projects = () => {
                 <Project>
                     <Banner
                         className="banner"
-                        bg={'/img/banner/' + proj.banner}
+                        bg={'/img/banner/' + bannerPrefix + proj.banner}
                     />
                     <Desc>
                         <ProjectTitle>
