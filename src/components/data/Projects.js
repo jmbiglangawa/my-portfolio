@@ -11,7 +11,7 @@ const ProjectList = [
         banner: 'Maven-Module-Builder.png',
         name: 'Maven Module Builder',
         desc:
-            "This certain project before is utilizing Maven's multi-module setup. Building the project at once takes from 10-45 minutes. I trimmed it down to 1 to 5 minutes to improve work.",
+            'Building a huge multi-module project takes around 45 minutes. I trimmed it down to 1 to 5 minutes to improve work by building individual sub-modules.',
         date: '07/29/2020',
         link: 'https://github.com/swingspringer/MavenModuleBuilder',
     },
@@ -19,7 +19,7 @@ const ProjectList = [
         banner: 'usada-kensetsu.png',
         name: 'Usada Kensetsu',
         desc:
-            'A project I worked with people globally. This is primarily a fan website aimed as a joke construction firm website. I learned most of my React from my Argentina buddy here!',
+            'A fan anime website project I worked with people globally. I learned most of my React from my Argentina buddy here!',
         date: '12/13/2020',
         link: 'https://github.com/swingspringer/usada-kensetsu',
     },
@@ -27,7 +27,7 @@ const ProjectList = [
         banner: 'Cat-alogue.png',
         name: 'Cat-alogue',
         desc:
-            'The project had a lot of logic that are non-programmer related, and requires many knowledge. None of it is documented so I tried to make this until they stopped me.',
+            'This project is aimed to store "Papers" that contains a lot of information about certain projects. It\'s like confluence but data is stored locally.',
         date: '08/30/2021',
         link:
             'https://www.figma.com/file/f5DS3rD7USz9wyUNi3xu3L/Cat-alogue?node-id=153%3A89',

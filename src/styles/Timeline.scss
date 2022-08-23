@@ -1,0 +1,13 @@
+@use 'Base.scss';
+
+.MuiTimelineItem-root.MuiTimelineItem-positionRight.MuiTimelineItem-missingOppositeContent {
+    @media (max-width: 750px) {
+        &:before {
+            content: none;
+        }
+    }
+}
+
+.MuiTimelineDot-root.MuiTimelineDot-filled {
+    background-color: Base.$mainColor;
+}

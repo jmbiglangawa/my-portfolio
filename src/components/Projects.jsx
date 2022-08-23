@@ -34,8 +34,6 @@ const Project = styled.div`
     }
 
     @media (max-width: 1024px) {
-        height: 200px;
-
         & .project-desc {
             margin: 0;
         }
@@ -88,12 +86,20 @@ const ProjectTitle = styled.div`
             color: #888888;
             width: 20px;
         }
+
+        @media (max-width: 420px) {
+            font-size: 1.56em;
+        }
     }
 
     & span {
         color: #595959;
         font-style: italic;
         font-size: 0.9em;
+
+        @media (max-width: 420px) {
+            font-size: 0.7em;
+        }
     }
 `
 
@@ -111,9 +117,7 @@ const MoreComingWrap = styled.div`
 
 const Projects = () => {
     const [bannerPrefix, setBannerPrefix] = useState('')
-    const isMobile = useMediaQuery(
-        `only screen and (max-width: ${Constants.mobileBreakpoint}px)`
-    )
+    const isMobile = useMediaQuery(Constants.smallScreenQuery)
 
     useEffect(() => {
         setBannerPrefix(isMobile ? 'm_' : '')
