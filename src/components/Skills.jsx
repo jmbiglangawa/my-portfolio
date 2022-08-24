@@ -4,11 +4,10 @@ import { Backend, Frontend } from './data/Skills'
 import Wrapper from './Wrapper'
 import { useState } from 'react'
 import Typewriter from 'typewriter-effect'
+import Constants from '../util/Constants'
+import { useMediaQuery } from '@react-hook/media-query'
+import SkillsMobile from './SkillsMobile'
 import '../styles/Skills.scss'
-
-const header =
-    'Marvie Command Prompt [Version 1.00000000001] \n Please click any skill on the left or right section to input a command...'
-const location = 'C:/Users/Marvie>'
 
 const Wrap = styled.div`
     color: red;
@@ -23,10 +22,6 @@ const SkillMonitor = styled.div`
     height: 601px;
     position: relative;
     color: #828282;
-
-    @media (max-width: 1024px) {
-        display: none;
-    }
 `
 
 const SkillsSection = styled.div`
@@ -62,7 +57,7 @@ const Right = styled(SkillsSection)`
 const SkillItem = styled.div`
     width: 50px;
     height: 50px;
-    padding-bottom: 20px;
+    margin-bottom: 20px;
     cursor: ${props => (props.active ? 'default' : 'pointer')};
     color: ${props => (props.active ? '#8f70e7' : '#828282')};
 
@@ -84,10 +79,15 @@ const Command = styled.div`
 `
 
 const Skills = () => {
-    const [cmd, setCmd] = useState([{ line: header }, { line: location }])
+    const [cmd, setCmd] = useState([
+        { line: Constants.skillMonitorHeader },
+        { line: Constants.skillMonitorLocation, idle: true },
+    ])
     const [cmdString, setCmdString] = useState()
     const [outputVisible, setOutputVisible] = useState(false)
     const [clsObject, setClsObject] = useState()
+
+    const isMobile = useMediaQuery(Constants.smallScreenQuery)
 
     const addToCmd = (command, output) => {
         if (command === cmdString) {
@@ -104,11 +104,17 @@ const Skills = () => {
         setTimeout(() => {
             setOutputVisible(false)
             setCmd([
-                { line: header },
-                { line: location, command },
+                { line: Constants.skillMonitorHeader },
+                { line: Constants.skillMonitorLocation, command },
                 { line: `>${output}`, output: true },
             ])
         }, timeout)
+    }
+
+    const onClickSkill = (command, output) => {
+        if (command !== cmdString) {
+            addToCmd(command, output)
+        }
     }
 
     return (
@@ -121,81 +127,96 @@ const Skills = () => {
                     below. Click on any icon to display how I personally
                     describe it
                 </p>
-                <SkillMonitor>
-                    <Left>
-                        {Frontend.map(({ id, icon, command, output }) => (
-                            <SkillItem
-                                key={id}
-                                active={command === cmdString}
-                                onClick={() => {
-                                    if (command !== cmdString)
-                                        addToCmd(command, output)
-                                }}>
-                                {icon}
-                            </SkillItem>
-                        ))}
-                    </Left>
-                    <Center>
-                        {cmd.map(({ line, command, output, clear }) => (
-                            <>
-                                <Command
-                                    inline={command || clear}
-                                    visible={!output || outputVisible}>
-                                    {line}
-                                </Command>
-                                {command && (
-                                    <Typewriter
-                                        key={command}
-                                        options={{
-                                            cursor: '_',
-                                        }}
-                                        onInit={typewriter => {
-                                            console.log('STAT')
-                                            typewriter
-                                                .typeString(command)
-                                                .start()
-                                                .pauseFor(500)
-                                                .callFunction(() => {
-                                                    setOutputVisible(true)
-                                                    setCmd([
-                                                        ...cmd,
-                                                        {
-                                                            line: location,
-                                                            clear: true,
-                                                        },
-                                                    ])
-                                                    document.getElementsByClassName(
-                                                        'Typewriter__cursor'
-                                                    )[0].style.display = 'none'
-                                                })
-                                        }}
-                                    />
-                                )}
-                                {clear && (
-                                    <Typewriter
-                                        options={{ cursor: '_' }}
-                                        onInit={typewriter => {
-                                            setClsObject(typewriter)
-                                        }}
-                                    />
-                                )}
-                            </>
-                        ))}
-                    </Center>
-                    <Right>
-                        {Backend.map(({ icon, id, command, output }) => (
-                            <SkillItem
-                                key={id}
-                                active={command === cmdString}
-                                onClick={() => {
-                                    if (command !== cmdString)
-                                        addToCmd(command, output)
-                                }}>
-                                {icon}
-                            </SkillItem>
-                        ))}
-                    </Right>
-                </SkillMonitor>
+                {!isMobile ? (
+                    <SkillMonitor>
+                        <Left>
+                            {Frontend.map(({ id, icon, command, output }) => (
+                                <SkillItem
+                                    key={id}
+                                    active={command === cmdString}
+                                    onClick={() =>
+                                        onClickSkill(command, output)
+                                    }>
+                                    {icon}
+                                </SkillItem>
+                            ))}
+                        </Left>
+                        <Center>
+                            {cmd.map(
+                                ({ line, command, output, clear, idle }) => (
+                                    <>
+                                        <Command
+                                            inline={command || clear || idle}
+                                            visible={!output || outputVisible}>
+                                            {line}
+                                        </Command>
+                                        {command && (
+                                            <Typewriter
+                                                key={command}
+                                                options={{
+                                                    cursor: '_',
+                                                }}
+                                                onInit={typewriter => {
+                                                    typewriter
+                                                        .typeString(command)
+                                                        .start()
+                                                        .pauseFor(500)
+                                                        .callFunction(() => {
+                                                            setOutputVisible(
+                                                                true
+                                                            )
+                                                            setCmd([
+                                                                ...cmd,
+                                                                {
+                                                                    line:
+                                                                        Constants.skillMonitorLocation,
+                                                                    clear: true,
+                                                                },
+                                                            ])
+                                                            document.getElementsByClassName(
+                                                                'Typewriter__cursor'
+                                                            )[0].style.display =
+                                                                'none'
+                                                        })
+                                                }}
+                                            />
+                                        )}
+                                        {clear && (
+                                            <Typewriter
+                                                options={{ cursor: '_' }}
+                                                onInit={typewriter => {
+                                                    setClsObject(typewriter)
+                                                }}
+                                            />
+                                        )}
+                                        {idle && (
+                                            <Typewriter
+                                                options={{
+                                                    cursor: '_',
+                                                }}
+                                            />
+                                        )}
+                                    </>
+                                )
+                            )}
+                        </Center>
+                        <Right>
+                            {Backend.map(({ icon, id, command, output }) => (
+                                <SkillItem
+                                    key={id}
+                                    active={command === cmdString}
+                                    onClick={() => {
+                                        if (command !== cmdString)
+                                            addToCmd(command, output)
+                                    }}>
+                                    {icon}
+                                </SkillItem>
+                            ))}
+                        </Right>
+                    </SkillMonitor>
+                ) : (
+                    <SkillsMobile />
+                )}
             </Wrap>
         </Wrapper>
     )
