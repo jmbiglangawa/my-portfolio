@@ -24,6 +24,7 @@ const Wrapper = styled.div`
         top: 2rem;
         right: 2rem;
         transition: top 0.3s, right 0.3s;
+        z-index: -1;
     }
 
     :hover {
@@ -119,7 +120,6 @@ const CardIcon = ({ belowFold }) => {
                         </IconButton>
                         <img
                             onClick={bcIconClickHandler}
-                            className="animate__swing"
                             src={BusinessCardIcon}
                             alt="bcIcon"
                         />
