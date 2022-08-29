@@ -118,14 +118,12 @@ const CardIcon = ({ belowFold }) => {
                         <IconButton size="small" onClick={closeIcon}>
                             <CloseIcon fontSize="inherit" />
                         </IconButton>
-                        <Tooltip title="Scroll to top">
-                            <img
-                                onClick={bcIconClickHandler}
-                                className="animate__swing"
-                                src={BusinessCardIcon}
-                                alt="bcIcon"
-                            />
-                        </Tooltip>
+                        <img
+                            onClick={bcIconClickHandler}
+                            className="animate__swing"
+                            src={BusinessCardIcon}
+                            alt="bcIcon"
+                        />
                     </Wrapper>
 
                     {!displayBC && (
