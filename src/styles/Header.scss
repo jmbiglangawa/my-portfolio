@@ -12,6 +12,10 @@
     transition: height 0.5s;
     min-height: 100px;
 
+    @media (max-device-width: 450px) {
+        position: unset;
+    }
+
     .brand-name-wrapper {
         @include Base.center;
 
@@ -152,6 +156,7 @@
                         font-family: 'AutoBusBold';
                         text-decoration: none;
                         cursor: pointer;
+                        user-select: none;
 
                         &:hover {
                             color: #d3d3d3;
@@ -182,5 +187,21 @@
 
     .brand-name img {
         margin-top: 3px !important;
+    }
+}
+
+.headerMobile {
+    height: 12vh;
+    position: fixed;
+    transform: translateY(-12vh);
+    transition: transform 0.5s;
+
+    .navigation-wrapper {
+        margin-bottom: 0;
+        transition: unset;
+    }
+
+    &.show {
+        transform: translateY(0);
     }
 }

@@ -7,6 +7,8 @@ import '../styles/Home.scss'
 import styled from '@emotion/styled'
 import IconButton from '@mui/material/IconButton'
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos'
+import { useMediaQuery } from '@react-hook/media-query'
+import Constants from '../util/Constants'
 
 const Wrapper = styled.div`
     position: fixed;
@@ -83,6 +85,7 @@ const Reopen = styled.div`
 const CardIcon = ({ belowFold }) => {
     const [displayBC, setDisplayBC] = useState(false)
     const bcIcon = useSpring({ right: displayBC ? '30px' : '-300px' })
+    const isMobile = useMediaQuery(Constants.androidQuery)
 
     useEffect(() => {
         if (belowFold) {
@@ -109,24 +112,28 @@ const CardIcon = ({ belowFold }) => {
 
     return (
         <>
-            <Wrapper as={animated.div} style={bcIcon}>
-                <IconButton size="small" onClick={closeIcon}>
-                    <CloseIcon fontSize="inherit" />
-                </IconButton>
-                <Tooltip title="Scroll to top">
-                    <img
-                        onClick={bcIconClickHandler}
-                        className="animate__swing"
-                        src={BusinessCardIcon}
-                        alt="bcIcon"
-                    />
-                </Tooltip>
-            </Wrapper>
+            {!isMobile && (
+                <>
+                    <Wrapper as={animated.div} style={bcIcon}>
+                        <IconButton size="small" onClick={closeIcon}>
+                            <CloseIcon fontSize="inherit" />
+                        </IconButton>
+                        <Tooltip title="Scroll to top">
+                            <img
+                                onClick={bcIconClickHandler}
+                                className="animate__swing"
+                                src={BusinessCardIcon}
+                                alt="bcIcon"
+                            />
+                        </Tooltip>
+                    </Wrapper>
 
-            {!displayBC && (
-                <Reopen onClick={reopenCard}>
-                    <ArrowBackIosIcon />
-                </Reopen>
+                    {!displayBC && (
+                        <Reopen onClick={reopenCard}>
+                            <ArrowBackIosIcon />
+                        </Reopen>
+                    )}
+                </>
             )}
         </>
     )

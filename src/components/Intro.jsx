@@ -50,7 +50,7 @@ const WrapperI = styled(Wrapper)`
     margin-top: 300px;
 `
 
-const Intro = () => {
+const Intro = ({ ref }) => {
     return (
         <WrapperI>
             <Header>
@@ -69,7 +69,7 @@ const Intro = () => {
                         things I learned in it.
                     </p>
                 </Wrap>
-                <Wrap>
+                <Wrap ref={ref}>
                     <img src={Console} alt="console" />
                     <h4>Back-end</h4>
                     <p>

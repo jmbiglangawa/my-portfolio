@@ -11,11 +11,16 @@ import Contact from './Contact'
 import classnames from 'classnames'
 import CardIcon from './CardIcon'
 import '../styles/Home.scss'
+import Constants from '../util/Constants'
+import { useMediaQuery } from '@react-hook/media-query'
+import HeaderMobile from './HeaderMobile'
+import { useInView } from 'react-intersection-observer'
 
 const Content = styled.div`
     margin: 0 10%;
     margin-top: 150vh;
     transition: margin-top 0.5s;
+    margin-bottom: 80px;
 
     @media (max-width: 1300px) {
         margin-left: 5%;
@@ -27,24 +32,37 @@ const Content = styled.div`
             display: none;
         }
     }
+
+    @media (max-width: 450px) {
+        margin-top: 10px;
+    }
 `
 
 const Home = () => {
     const [belowFold, setBelowFold] = useState(false)
     const scrollY = useScrollPosition(10)
+    const isMobile = useMediaQuery(Constants.phoneQuery)
+    const { ref, inView } = useInView()
     const fold = 100
 
     useEffect(() => {
-        if (scrollY > fold && !belowFold) {
-            setBelowFold(true)
-        } else if (scrollY <= fold && belowFold) {
+        if (!isMobile) {
+            if (scrollY > fold && !belowFold) {
+                setBelowFold(true)
+            } else if (scrollY <= fold && belowFold) {
+                setBelowFold(false)
+            }
+        } else {
             setBelowFold(false)
         }
-    }, [scrollY, belowFold])
+    }, [scrollY, belowFold, isMobile])
 
     return (
         <div id="home">
-            <Header belowFold={belowFold} />
+            <div ref={ref}>
+                <Header belowFold={belowFold} />
+            </div>
+            {isMobile && <HeaderMobile onContent={!inView} />}
             <Content className={classnames({ contentScroll: belowFold })}>
                 <Intro />
                 <Skills />
@@ -52,8 +70,8 @@ const Home = () => {
                 <Projects />
                 <Contact />
             </Content>
-            <CardIcon belowFold={belowFold} />
             <Footer />
+            <CardIcon belowFold={belowFold} />
         </div>
     )
 }

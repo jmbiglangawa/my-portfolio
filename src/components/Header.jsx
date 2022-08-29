@@ -8,8 +8,6 @@ import Button from '@mui/material/Button'
 import { Link as ExternalLink } from '@mui/material'
 import classnames from 'classnames'
 import useScrollPosition from '@react-hook/window-scroll'
-import Constants from './../util/Constants'
-import { useMediaQuery } from '@react-hook/media-query'
 
 const Navigator = ({ target }) => {
     const scrollY = useScrollPosition(60)
@@ -36,8 +34,6 @@ const Navigator = ({ target }) => {
 }
 
 const Header = ({ belowFold }) => {
-    const isMobile = useMediaQuery(Constants.mobileQuery)
-
     const download = () => {
         fetch(process.env.PUBLIC_URL + '/img/business-card.png').then(
             response => {
@@ -78,7 +74,7 @@ const Header = ({ belowFold }) => {
             </div>
 
             <div className="bc-wrapper">
-                <Tilt className="tilt-wrapper" gyroscope={isMobile}>
+                <Tilt className="tilt-wrapper">
                     <img className="business-card" src={BusinessCard} alt="" />
                 </Tilt>
                 <div className="below-wrapper">
