@@ -58,3 +58,8 @@ body {
         font-size: Base.$mobileFontSize;
     }
 }
+
+/* This only changes this particular animation duration */
+.animate__animated.animate__zoomIn {
+    --animate-duration: 0.5s;
+}
