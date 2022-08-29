@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useSpring, animated } from 'react-spring'
 import BusinessCardIcon from '../assets/img/business-card-icon.png'
-import { Tooltip } from '@mui/material'
 import CloseIcon from '@mui/icons-material/Close'
 import '../styles/Home.scss'
 import styled from '@emotion/styled'
