@@ -96,10 +96,7 @@ const CardIcon = ({ belowFold }) => {
     }, [belowFold])
 
     const bcIconClickHandler = () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth',
-        })
+        window.scrollTo(0, 0)
     }
 
     const closeIcon = () => {
@@ -114,7 +111,7 @@ const CardIcon = ({ belowFold }) => {
         <>
             {!isMobile && (
                 <>
-                    <Wrapper as={animated.div} style={bcIcon}>
+                    <Wrapper as={animated.div} style={bcIcon} id="cardIcon">
                         <IconButton size="small" onClick={closeIcon}>
                             <CloseIcon fontSize="inherit" />
                         </IconButton>

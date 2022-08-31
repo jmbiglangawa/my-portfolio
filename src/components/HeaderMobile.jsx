@@ -1,24 +1,12 @@
 import '../styles/Header.scss'
 import WhiteLine from '../assets/svg/icons/brand-white-line.svg'
 import { Link as ExternalLink } from '@mui/material'
-import useScrollPosition from '@react-hook/window-scroll'
 import classnames from 'classnames'
 
 const Navigator = ({ target }) => {
-    const scrollY = useScrollPosition(60)
-
     const onClick = () => {
-        // This equation kind of worked out
-        const offset =
-            scrollY <= 50 ? window.innerHeight + 137 : window.innerHeight / 12
-        const locationY =
-            scrollY +
-            document
-                .getElementById(target.toLowerCase())
-                .getBoundingClientRect().top -
-            offset
-
-        window.scrollTo(0, target === 'HOME' ? 0 : locationY)
+        const nav = document.getElementById(target.toLowerCase())
+        nav.scrollIntoView({ behavior: 'smooth' })
     }
 
     return (

@@ -8,22 +8,35 @@ import Button from '@mui/material/Button'
 import { Link as ExternalLink } from '@mui/material'
 import classnames from 'classnames'
 import useScrollPosition from '@react-hook/window-scroll'
+import { useMediaQuery } from '@react-hook/media-query'
+import Constants from './../util/Constants'
 
 const Navigator = ({ target }) => {
     const scrollY = useScrollPosition(60)
+    const isMobile = useMediaQuery(Constants.phoneQuery)
 
     const onClick = () => {
-        // This equation kind of worked out
-        const offset =
-            scrollY <= 50 ? window.innerHeight + 137 : window.innerHeight / 12
-        const locationY =
-            scrollY +
-            document
-                .getElementById(target.toLowerCase())
-                .getBoundingClientRect().top -
-            offset
+        if (target === 'HOME') {
+            window.scrollTo(0, 0)
+            return
+        }
 
-        window.scrollTo(0, target === 'HOME' ? 0 : locationY)
+        let timeout = 0
+        const root = document.getElementById('root')
+        if (!isMobile && scrollY < 100 && target !== 'HOME') {
+            root.classList.add('disable-transition')
+            window.scrollTo(0, 101)
+            timeout = 60
+        }
+
+        setTimeout(() => {
+            const nav = document.getElementById(target.toLowerCase())
+            nav.scrollIntoView({ behavior: 'smooth' })
+
+            if (!isMobile) {
+                root.classList.remove('disable-transition')
+            }
+        }, timeout)
     }
 
     return (
@@ -33,7 +46,7 @@ const Navigator = ({ target }) => {
     )
 }
 
-const Header = ({ belowFold }) => {
+const Header = ({ belowFold, ref }) => {
     const download = () => {
         fetch(process.env.PUBLIC_URL + '/img/business-card.png').then(
             response => {
@@ -54,8 +67,9 @@ const Header = ({ belowFold }) => {
 
     return (
         <div
+            ref={ref}
             className={classnames('header', { headerScroll: belowFold })}
-            id="header">
+            id="home">
             <div className="brand-name-wrapper">
                 <div className="brand-name">
                     <h6>marvie.web.app</h6>
@@ -73,7 +87,7 @@ const Header = ({ belowFold }) => {
                 </ExternalLink>
             </div>
 
-            <div className="bc-wrapper">
+            <div className="bc-wrapper" id="bc-wrapper">
                 <Tilt className="tilt-wrapper">
                     <img className="business-card" src={BusinessCard} alt="" />
                 </Tilt>
@@ -85,7 +99,7 @@ const Header = ({ belowFold }) => {
                 </div>
             </div>
 
-            <div className="navigation-wrapper">
+            <div className="navigation-wrapper" id="navigation-wrapper">
                 <nav>
                     <ul>
                         <Navigator target="HOME" />

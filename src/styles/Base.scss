@@ -64,3 +64,15 @@ $mobileSize: 800px;
 .horizon-background {
     @include horizon-background;
 }
+
+.disable-transition * {
+    -webkit-transition: none !important;
+    -moz-transition: none !important;
+    -o-transition: none !important;
+    -ms-transition: none !important;
+    transition: none !important;
+}
+
+#projects {
+    scroll-margin-top: 10vh;
+}

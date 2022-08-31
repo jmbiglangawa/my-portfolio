@@ -38,6 +38,8 @@ const Content = styled.div`
     }
 `
 
+const HeaderWrapper = styled.div``
+
 const Home = () => {
     const [belowFold, setBelowFold] = useState(false)
     const scrollY = useScrollPosition(10)
@@ -58,12 +60,14 @@ const Home = () => {
     }, [scrollY, belowFold, isMobile])
 
     return (
-        <div id="home">
-            <div ref={ref}>
+        <>
+            <HeaderWrapper ref={ref}>
                 <Header belowFold={belowFold} />
-            </div>
+            </HeaderWrapper>
             {isMobile && <HeaderMobile onContent={!inView} />}
-            <Content className={classnames({ contentScroll: belowFold })}>
+            <Content
+                id="content"
+                className={classnames({ contentScroll: belowFold })}>
                 <Intro />
                 <Skills />
                 <Timeline />
@@ -72,7 +76,7 @@ const Home = () => {
             </Content>
             <Footer />
             <CardIcon belowFold={belowFold} />
-        </div>
+        </>
     )
 }
 
