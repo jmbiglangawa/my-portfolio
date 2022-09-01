@@ -12,6 +12,12 @@ const Wrap = styled.div`
             : css`
                   padding: 5% 0;
               `}
+
+    scroll-margin-top: 10vh;
+
+    @media screen and (max-device-width: 450px) {
+        scroll-margin-top: 12vh;
+    }
 `
 
 const Wrapper = ({ id, children, center }) => {
